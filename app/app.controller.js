@@ -6,6 +6,7 @@ angular.module('formMaker').controller('FormController', function($scope) {
     questionsList: [],
   };
   this.questionProps = {
+    questionType: 'text',
     options: []
   };
   this.addQuestion = function(questionProps) {
