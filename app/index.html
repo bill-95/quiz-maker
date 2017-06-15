@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Form Maker</title>
+
+    <!-- Bootstrap -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Angular -->
+    <script src="bower_components/angular/angular.min.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body ng-app="formMaker">
+    <div ng-controller="FormController as fc">
+      <h2>Form Name</h2>
+      <input type="text" ng-model="fc.newForm.formName" class="form-control"/>
+      <h2>Author</h2>
+      <input type="text" ng-model="fc.newForm.formAuthor" class="form-control"/>
+      <h2>Add a question</h2>
+      <input type="text" ng-model="fc.questionProps.questionText" class="form-control"/>
+
+      <h2>Select question type</h2>
+      <select ng-model="fc.questionProps.questionType" class="form-control">
+        <option value="text">Text</option>
+        <option value="mc">Multiple Choice</option>
+        <option value="cb">Checkbox</option>
+      </select>
+      <br>
+      <input ng-if="fc.questionProps.questionType == 'mc'" type="text" ng-model="fc.optionItem" class="form-control"/>
+      <input ng-if="fc.questionProps.questionType == 'mc'" type="submit"  ng-click="fc.addOption(fc.optionItem)" value="Add Option" class="btn btn-primary"/>
+      <ul>
+        <li ng-repeat="item in fc.questionProps.options">{{item}}</li>
+      </ul>
+      <br>
+      <pre>{{fc.questionProps | json}}</pre>
+      <input type="submit" ng-click="fc.addQuestion(fc.questionProps)" value="Add Question" class="btn btn-primary"/>
+
+      <span ng-repeat="pair in fc.newForm.questionsList">
+        <pre>{{pair | json}}</pre>
+      </span>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Modules -->
+    <script src="app.module.js"></script>
+    <!-- Controllers -->
+    <script src="app.controller.js"></script>
+  </body>
+</html>
