@@ -1,8 +1,8 @@
 {
-    "name": "form-maker",
+    "name": "quiz-maker",
     "private": true,
     "version": "0.0.0",
-    "description": "A google forms replacement",
+    "description": "makes simple quizzes",
     "repository": "",
     "license": "MIT",
     "devDependencies": {

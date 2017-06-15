@@ -19,32 +19,32 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body ng-app="formMaker">
-    <div ng-controller="FormController as fc">
+  <body ng-app="quizMaker">
+    <div ng-controller="QuizController as qc">
       <h2>Form Name</h2>
-      <input type="text" ng-model="fc.newForm.formName" class="form-control"/>
+      <input type="text" ng-model="qc.newForm.formName" class="form-control"/>
       <h2>Author</h2>
-      <input type="text" ng-model="fc.newForm.formAuthor" class="form-control"/>
+      <input type="text" ng-model="qc.newForm.formAuthor" class="form-control"/>
       <h2>Add a question</h2>
-      <input type="text" ng-model="fc.questionProps.questionText" class="form-control"/>
+      <input type="text" ng-model="qc.questionProps.questionText" class="form-control"/>
 
       <h2>Select question type</h2>
-      <select ng-model="fc.questionProps.questionType" class="form-control">
+      <select ng-model="qc.questionProps.questionType" class="form-control">
         <option value="text">Text</option>
         <option value="mc">Multiple Choice</option>
         <option value="cb">Checkbox</option>
       </select>
       <br>
-      <input ng-if="fc.questionProps.questionType == 'mc'" type="text" ng-model="fc.optionItem" class="form-control"/>
-      <input ng-if="fc.questionProps.questionType == 'mc'" type="submit"  ng-click="fc.addOption(fc.optionItem)" value="Add Option" class="btn btn-primary"/>
+      <input ng-if="qc.questionProps.questionType == 'mc'" type="text" ng-model="qc.optionItem" class="form-control"/>
+      <input ng-if="qc.questionProps.questionType == 'mc'" type="submit"  ng-click="qc.addOption(qc.optionItem)" value="Add Option" class="btn btn-primary"/>
       <ul>
-        <li ng-repeat="item in fc.questionProps.options">{{item}}</li>
+        <li ng-repeat="item in qc.questionProps.options">{{item}}</li>
       </ul>
       <br>
-      <pre>{{fc.questionProps | json}}</pre>
-      <input type="submit" ng-click="fc.addQuestion(fc.questionProps)" value="Add Question" class="btn btn-primary"/>
+      <pre>{{qc.questionProps | json}}</pre>
+      <input type="submit" ng-click="qc.addQuestion(qc.questionProps)" value="Add Question" class="btn btn-primary"/>
 
-      <span ng-repeat="pair in fc.newForm.questionsList">
+      <span ng-repeat="pair in qc.newForm.questionsList">
         <pre>{{pair | json}}</pre>
       </span>
     </div>

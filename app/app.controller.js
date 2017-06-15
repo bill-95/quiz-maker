@@ -1,4 +1,4 @@
-angular.module('formMaker').controller('FormController', function($scope) {
+angular.module('quizMaker').controller('QuizController', function($scope) {
   this.newForm = {
     name: '',
     author: '',

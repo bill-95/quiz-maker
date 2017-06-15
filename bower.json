@@ -1,6 +1,6 @@
 {
-  "name": "form-maker",
-  "description": "A google forms replacement",
+  "name": "quiz-maker",
+  "description": "makes simple quizzes",
   "version": "0.0.0",
   "homepage": "",
   "license": "MIT",
