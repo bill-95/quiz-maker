@@ -1,0 +1,43 @@
+<div class="col-md-6">
+  <div class="well">
+      <h2>Quiz Name</h2>
+      <input type="text" ng-model="$ctrl.newForm.name" class="form-control"/>
+      <h2>Class</h2>
+      <input type="text" ng-model="$ctrl.newForm.class" class="form-control"/>
+  </div>
+
+  <div class="well">
+    <h2>Add a question</h2>
+    <input type="text" ng-model="$ctrl.questionProps.questionText" class="form-control"/>
+
+    <h2>Select question type</h2>
+    <select ng-model="$ctrl.questionProps.questionType" class="form-control">
+      <option value="text">Text</option>
+      <option value="mc">Multiple Choice</option>
+      <option value="cb">Checkbox</option>
+    </select>
+    <br>
+    <input ng-if="$ctrl.questionProps.questionType == 'mc'" type="text" ng-model="$ctrl.optionItem" class="form-control"/>
+    <input ng-if="$ctrl.questionProps.questionType == 'mc'" type="submit"  ng-click="$ctrl.addOption($ctrl.optionItem)" value="Add Option" class="btn btn-primary"/>
+    <ul>
+      <li ng-repeat="item in $ctrl.questionProps.options track by $index">{{item}} <span ng-click="$ctrl.removeOption($index)" class="glyphicon glyphicon-remove"></span></li>
+    </ul>
+    <br>
+    <pre>{{$ctrl.questionProps | json}}</pre>
+    <input type="submit" ng-click="$ctrl.addQuestion($ctrl.questionProps)" value="Add Question" class="btn btn-primary"/>
+
+    <span ng-repeat="pair in $ctrl.newForm.questionsList">
+      <pre>{{pair | json}}</pre>
+    </span>
+  </div>
+</div>
+
+<div class="col-md-6">
+  <div class="well">
+    <h2>Quiz Preview</h2>
+    <h3>{{$ctrl.newForm.name}} - {{$ctrl.newForm.class}}</h3>
+    <div ng-repeat="question in $ctrl.newForm.questionsList">
+      <p>{{$index + 1}}. {{question.questionText}}</p>
+    </div>
+  </div>
+</div>

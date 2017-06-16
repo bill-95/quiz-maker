@@ -20,34 +20,10 @@
     <![endif]-->
   </head>
   <body ng-app="quizMaker">
-    <div ng-controller="QuizController as qc">
-      <h2>Form Name</h2>
-      <input type="text" ng-model="qc.newForm.formName" class="form-control"/>
-      <h2>Author</h2>
-      <input type="text" ng-model="qc.newForm.formAuthor" class="form-control"/>
-      <h2>Add a question</h2>
-      <input type="text" ng-model="qc.questionProps.questionText" class="form-control"/>
-
-      <h2>Select question type</h2>
-      <select ng-model="qc.questionProps.questionType" class="form-control">
-        <option value="text">Text</option>
-        <option value="mc">Multiple Choice</option>
-        <option value="cb">Checkbox</option>
-      </select>
-      <br>
-      <input ng-if="qc.questionProps.questionType == 'mc'" type="text" ng-model="qc.optionItem" class="form-control"/>
-      <input ng-if="qc.questionProps.questionType == 'mc'" type="submit"  ng-click="qc.addOption(qc.optionItem)" value="Add Option" class="btn btn-primary"/>
-      <ul>
-        <li ng-repeat="item in qc.questionProps.options">{{item}}</li>
-      </ul>
-      <br>
-      <pre>{{qc.questionProps | json}}</pre>
-      <input type="submit" ng-click="qc.addQuestion(qc.questionProps)" value="Add Question" class="btn btn-primary"/>
-
-      <span ng-repeat="pair in qc.newForm.questionsList">
-        <pre>{{pair | json}}</pre>
-      </span>
+    <div class="container">
+      <quiz-form></quiz-form>
     </div>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -55,7 +31,18 @@
 
     <!-- Modules -->
     <script src="app.module.js"></script>
+    <script src="core/core.module.js"></script>
+    <script src="core/quiz/quiz.module.js"></script>
+    <script src="quiz-form/quiz-form.module.js"></script>
+    <script src="quiz-preview/quiz-preview.module.js"></script>
+
+    <!-- Service -->
+    <script src="core/quiz/quiz.service.js"></script>
     <!-- Controllers -->
-    <script src="app.controller.js"></script>
+
+
+    <!-- Components -->
+    <script src="quiz-form/quiz-form.component.js"></script>
+    <script src="quiz-preview/quiz-preview.component.js"></script>
   </body>
 </html>
