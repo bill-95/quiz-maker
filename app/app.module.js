@@ -1,4 +1,2 @@
-'use strict';
-
 // Declare app level module which depends on views, and components
-angular.module('quizMaker', ['quizForm', 'quizPreview', 'core']);
+angular.module('quizMaker', ['quizForm']);

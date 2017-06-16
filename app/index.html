@@ -9,6 +9,8 @@
 
     <!-- Bootstrap -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Styles -->
+    <link href="app.css" rel="stylesheet">
 
     <!-- Angular -->
     <script src="bower_components/angular/angular.min.js"></script>
@@ -20,6 +22,8 @@
     <![endif]-->
   </head>
   <body ng-app="quizMaker">
+
+    <!-- Fun stuff goes here -->
     <div class="container">
       <quiz-form></quiz-form>
     </div>
@@ -31,18 +35,14 @@
 
     <!-- Modules -->
     <script src="app.module.js"></script>
-    <script src="core/core.module.js"></script>
-    <script src="core/quiz/quiz.module.js"></script>
     <script src="quiz-form/quiz-form.module.js"></script>
-    <script src="quiz-preview/quiz-preview.module.js"></script>
 
     <!-- Service -->
-    <script src="core/quiz/quiz.service.js"></script>
-    <!-- Controllers -->
 
+    <!-- Controllers -->
 
     <!-- Components -->
     <script src="quiz-form/quiz-form.component.js"></script>
-    <script src="quiz-preview/quiz-preview.component.js"></script>
+
   </body>
 </html>

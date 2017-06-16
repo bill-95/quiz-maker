@@ -1,4 +1,5 @@
-<div class="col-md-6">
+<!-- Adding quiz properties -->
+<div class="col-md-6 hidden-print">
   <div class="well">
       <h2>Quiz Name</h2>
       <input type="text" ng-model="$ctrl.newForm.name" class="form-control"/>
@@ -6,38 +7,50 @@
       <input type="text" ng-model="$ctrl.newForm.class" class="form-control"/>
   </div>
 
+<!-- Adding questions to quiz -->
   <div class="well">
     <h2>Add a question</h2>
     <input type="text" ng-model="$ctrl.questionProps.questionText" class="form-control"/>
 
     <h2>Select question type</h2>
     <select ng-model="$ctrl.questionProps.questionType" class="form-control">
-      <option value="text">Text</option>
+      <option value="textShort">Short Answer</option>
+      <option value="textLong">Long Answer</option>
       <option value="mc">Multiple Choice</option>
       <option value="cb">Checkbox</option>
     </select>
     <br>
-    <input ng-if="$ctrl.questionProps.questionType == 'mc'" type="text" ng-model="$ctrl.optionItem" class="form-control"/>
-    <input ng-if="$ctrl.questionProps.questionType == 'mc'" type="submit"  ng-click="$ctrl.addOption($ctrl.optionItem)" value="Add Option" class="btn btn-primary"/>
+    <input ng-if="$ctrl.questionProps.questionType == 'mc' || $ctrl.questionProps.questionType == 'cb'" type="text" ng-model="$ctrl.optionItem" class="form-control"/>
+    <br ng-if="$ctrl.questionProps.questionType == 'mc' || $ctrl.questionProps.questionType == 'cb'">
+    <input ng-if="$ctrl.questionProps.questionType == 'mc' || $ctrl.questionProps.questionType == 'cb'" type="submit"  ng-click="$ctrl.addOption($ctrl.optionItem)" value="Add Option" class="btn btn-success"/>
     <ul>
-      <li ng-repeat="item in $ctrl.questionProps.options track by $index">{{item}} <span ng-click="$ctrl.removeOption($index)" class="glyphicon glyphicon-remove"></span></li>
+      <li ng-repeat="item in $ctrl.questionProps.options track by $index">{{item}}   <button type="button" class="btn btn-default btn-xs" ng-click="$ctrl.removeOption($index)">X</button></li>
     </ul>
-    <br>
-    <pre>{{$ctrl.questionProps | json}}</pre>
     <input type="submit" ng-click="$ctrl.addQuestion($ctrl.questionProps)" value="Add Question" class="btn btn-primary"/>
-
-    <span ng-repeat="pair in $ctrl.newForm.questionsList">
-      <pre>{{pair | json}}</pre>
-    </span>
+    <br>
   </div>
 </div>
 
+<!-- Print this section as the final quiz -->
 <div class="col-md-6">
   <div class="well">
-    <h2>Quiz Preview</h2>
-    <h3>{{$ctrl.newForm.name}} - {{$ctrl.newForm.class}}</h3>
+    <h2 class="hidden-print">Quiz Preview</h2>
+    <button class="btn btn-primary hidden-print" ng-click="$ctrl.printQuiz()">Print Quiz</button>
+    <div class="page-header">
+      <h1>{{$ctrl.newForm.name}} <small>{{$ctrl.newForm.class}}</small></h1>
+    </div>
     <div ng-repeat="question in $ctrl.newForm.questionsList">
-      <p>{{$index + 1}}. {{question.questionText}}</p>
+      <button type="button" class="btn btn-primary"
+      <p>{{$index + 1}}.) {{question.questionText}}</p>
+      <hr class="line" ng-if="question.questionType == 'textShort'" />
+      <hr class="line" ng-if="question.questionType == 'textLong'" />
+      <hr class="line" ng-if="question.questionType == 'textLong'" />
+      <hr class="line" ng-if="question.questionType == 'textLong'" />
+      <hr class="line" ng-if="question.questionType == 'textLong'" />
+      <ul class="list-unstyled" ng-if="question.options.length > 0" ng-repeat="option in question.options track by $index">
+        <li style="padding-left:2em"><span class="glyphicon glyphicon-unchecked"></span>{{" " + option}}</li>
+      </ul>
+      <br>
     </div>
   </div>
 </div>

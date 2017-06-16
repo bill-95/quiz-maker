@@ -1,1 +1,2 @@
-angular.module('quizForm', ['core.quiz']);
+// module for the quiz form
+angular.module('quizForm', []);
