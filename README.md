@@ -1,2 +1,3 @@
 # quiz-maker
 ## Makes simple quizzes
+## Maybe it'll help you study...
